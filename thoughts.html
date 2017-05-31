@@ -1,0 +1,29 @@
+<div class="quotes-container">
+    <h2 class="text-center">Quotes</h2>
+    <div class="row form-row">
+        <div class="col-md-6">
+            <input type="number" name="thougtid" placeholder="Enter thought id" ng-model="thoughtid" ng-disabled="obj.visible">
+        </div>
+        <div class="col-md-6" style="margin-top: 1%;">
+            <button type="button" name="next" ng-click="next()" ng-disabled="isDisabled || thoughtid >= obj.thoughts.length "> <i class="fa fa-chevron-up" aria-hidden="true"></i> </button>
+            <button type="button" name="previous" ng-click="previous()" ng-disabled="isDisabled || thoughtid <= 1"> <i class="fa fa-chevron-down" aria-hidden="true"></i> </button>
+            <button type="button" name="previous" ng-click="showall()"> {{ obj.visible ? 'Hide' : 'Show' }} All Thoughts</button>
+        </div>
+    </div>
+    <div class="contentdiv sample-show-hide singlethoughts" ng-class="{'is-visible': !obj.visible}">
+        <div class="myQuotes">
+            <div class="quotes">
+                <i class="fa fa-quote-left" aria-hidden="true"></i>
+            </div>
+            <span ng-show="!obj.visible">{{ obj.thoughts | searchById:thoughtid }}</span>
+        </div>
+    </div>
+    <div class="total-quotes" ng-class="{'is-visible': obj.visible}">
+        <div class="quotes">
+            <i class="fa fa-quote-left" aria-hidden="true"></i>
+        </div>
+        <div class="all-quotes">
+            <p ng-repeat="thought in obj.thoughts">{{ thought.name }}</p>
+        </div>
+    </div>
+</div>
